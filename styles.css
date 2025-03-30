@@ -1,0 +1,331 @@
+/* --- Global Styles & Variables --- */
+:root {
+  --primary-color: #4a00e0; /* Vibrant Purple */
+  --secondary-color: #8e2de2; /* Lighter Purple */
+  --background-gradient: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
+  --container-bg: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+  --text-color: #333;
+  --light-text-color: #f8f9fa;
+  --accent-color: #00c6ff; /* Bright Blue for accents */
+  --success-color: #28a745; /* Green */
+  --danger-color: #dc3545; /* Red */
+  --edit-color: #ffc107; /* Yellow/Orange */
+  --border-radius: 8px;
+  --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --transition-speed: 0.3s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--background-gradient);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex; /* Helps center container */
+  justify-content: center; /* Helps center container */
+  align-items: flex-start; /* Aligns container to top */
+}
+
+/* --- Container --- */
+.container {
+  background: var(--container-bg);
+  padding: 30px 40px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 700px; /* Max width for larger screens */
+  margin-top: 30px; /* Space from top */
+}
+
+/* --- Header --- */
+header h1 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  font-size: 2.5em;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.input-area {
+  display: flex;
+  gap: 10px; /* Space between input and button */
+  margin-bottom: 30px;
+}
+
+#newTaskInput {
+  flex-grow: 1; /* Take available space */
+  padding: 12px 15px;
+  border: 2px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 1em;
+  transition: border-color var(--transition-speed);
+}
+
+#newTaskInput:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(74, 0, 224, 0.3);
+}
+
+#addTaskBtn {
+  padding: 12px 20px;
+  background: linear-gradient(
+    135deg,
+    var(--accent-color) 0%,
+    #007bff 100%
+  ); /* Blue gradient */
+  color: var(--light-text-color);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  transition: background var(--transition-speed),
+    transform var(--transition-speed);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#addTaskBtn:hover {
+  background: linear-gradient(135deg, #007bff 0%, var(--accent-color) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Task Sections --- */
+.task-section {
+  margin-bottom: 30px;
+}
+
+.task-section h2 {
+  color: var(--secondary-color);
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid var(--secondary-color);
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icon and text */
+  font-size: 1.6em;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* --- Individual Task Item --- */
+.task-item {
+  background: #fff;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color var(--transition-speed),
+    box-shadow var(--transition-speed);
+  word-break: break-word; /* Prevent long words from overflowing */
+}
+
+.task-item:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.task-item .task-content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1; /* Allow text to take up space */
+  gap: 15px; /* Space between checkbox and text */
+  margin-right: 15px; /* Space before buttons */
+}
+
+.task-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--success-color); /* Color the check */
+  cursor: pointer;
+  flex-shrink: 0; /* Prevent checkbox from shrinking */
+}
+
+.task-item .task-text {
+  flex-grow: 1; /* Allow text to expand */
+  font-size: 1.05em;
+  transition: color var(--transition-speed),
+    text-decoration var(--transition-speed);
+}
+
+/* --- Task Item Buttons --- */
+.task-item .task-actions {
+  display: flex;
+  gap: 8px; /* Space between buttons */
+  flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+.task-item button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em; /* Slightly larger icons */
+  padding: 5px;
+  border-radius: 50%; /* Circular background on hover */
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed);
+}
+
+.task-item .edit-btn {
+  color: var(--edit-color);
+}
+.task-item .delete-btn {
+  color: var(--danger-color);
+}
+
+.task-item .edit-btn:hover {
+  background-color: rgba(255, 193, 7, 0.1);
+}
+.task-item .delete-btn:hover {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+/* --- Finished Tasks Styling --- */
+.finished-section .collapsible-header {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between; /* Pushes toggle icon to the right */
+  align-items: center;
+  -webkit-user-select: none;
+  user-select: none; /* Prevent text selection */
+}
+.finished-section h2 i {
+  color: var(--success-color); /* Green icon for finished */
+}
+
+.toggle-icon {
+  font-size: 0.8em; /* Smaller icon */
+  font-weight: bold;
+  transition: transform var(--transition-speed);
+  display: inline-block; /* Needed for transform */
+}
+
+.collapsible-header.collapsed .toggle-icon {
+  transform: rotate(-90deg); /* Rotate to indicate collapsed state */
+}
+
+.collapsible-content {
+  max-height: 1000px; /* Allow space for content */
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out,
+    margin-top 0.5s ease-in-out;
+  opacity: 1;
+  margin-top: 15px; /* Add space when open */
+}
+
+.collapsible-content.hidden {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0; /* Remove space when hidden */
+  /* Important: We keep padding-bottom on h2, so no need to hide it completely */
+}
+
+#finishedTaskList .task-item {
+  background-color: #f1f1f1; /* Slightly greyed out */
+  opacity: 0.8;
+}
+
+#finishedTaskList .task-item .task-text {
+  text-decoration: line-through;
+  color: #777;
+}
+
+/* Hide Edit button for finished tasks */
+#finishedTaskList .task-item .edit-btn {
+  display: none;
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 25px;
+    margin-top: 15px;
+  }
+
+  header h1 {
+    font-size: 2em;
+  }
+
+  .input-area {
+    flex-direction: column; /* Stack input and button */
+    gap: 15px;
+  }
+
+  #addTaskBtn {
+    width: 100%; /* Full width button */
+    justify-content: center; /* Center icon and text */
+  }
+
+  .task-section h2 {
+    font-size: 1.4em;
+  }
+
+  .task-item {
+    padding: 12px 15px;
+    flex-wrap: wrap; /* Allow wrapping if needed */
+  }
+
+  .task-item .task-content {
+    margin-right: 10px; /* Reduce space */
+    gap: 10px;
+    /* Take almost full width on small screens before wrapping actions */
+    flex-basis: calc(100% - 80px); /* Adjust based on action button size */
+  }
+
+  .task-item .task-actions {
+    flex-basis: 70px; /* Fixed space for buttons */
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  .container {
+    padding: 15px 20px;
+  }
+  header h1 {
+    font-size: 1.8em;
+  }
+  .task-item .task-content {
+    /* Allow text to wrap below checkbox if very long */
+    flex-basis: calc(100% - 40px); /* Adjust if needed */
+  }
+  .task-item .task-actions {
+    flex-basis: 100%; /* Force actions onto new line */
+    margin-top: 10px; /* Add space when wrapped */
+    justify-content: flex-end; /* Align buttons right */
+  }
+
+  .task-item button {
+    font-size: 1em;
+    width: 28px;
+    height: 28px;
+  }
+}

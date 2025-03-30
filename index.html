@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stylish To-Do List</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Optional: For Icons -->
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Basic TODO</h1>
+        <div class="input-area">
+          <input
+            type="text"
+            id="newTaskInput"
+            placeholder="Add a new task..."
+          />
+          <button id="addTaskBtn" aria-label="Add Task">
+            <i class="fas fa-plus"></i> Add
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="task-section">
+          <h2><i class="fas fa-list-ul"></i> Active Tasks</h2>
+          <ul id="taskList" class="task-list">
+            <!-- Tasks will be loaded here by JavaScript -->
+          </ul>
+        </section>
+
+        <section class="task-section finished-section">
+          <h2 id="finishedHeader" class="collapsible-header">
+            <i class="fas fa-check-circle"></i> Finished Tasks
+            <span id="toggleFinished" class="toggle-icon">[-]</span>
+          </h2>
+          <ul
+            id="finishedTaskList"
+            class="task-list collapsible-content visible"
+          >
+            <!-- Finished tasks will be loaded here by JavaScript -->
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
